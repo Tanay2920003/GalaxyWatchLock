@@ -1,10 +1,19 @@
-# 🔒 AutoLock — Galaxy Watch Ultra
+# 🔒 AutoLock — Galaxy Watch Ultra (##Since I have to take off my watch everytime to lock it)
 
 > **Automatically lock your Galaxy Watch Ultra when you fall asleep** — protecting OTPs and sensitive notifications from unauthorized access while you sleep.
 
 Samsung's Galaxy Watch already locks when taken off your wrist. But **it stays unlocked while you're wearing it and sleeping** — leaving your OTPs, payment apps, and notifications exposed if someone picks up your hand. AutoLock solves this.
 
 ---
+<img width="480" height="480" alt="RUID4dd32ce20f204f30b7c454f5ed098369" src="https://github.com/user-attachments/assets/c23efaaf-ba35-46ae-b1c6-4a3e2c6cdc25" />
+<img width="480" height="480" alt="RUID0e70aa2f8d2048019be80e0ea8306754" src="https://github.com/user-attachments/assets/c750e297-f32e-4271-9a67-b6093ca16bb7" />
+<img width="480" height="480" alt="RUID863dfd0d0cc44e2191560251350141b6" src="https://github.com/user-attachments/assets/edf532d6-545b-4d87-b2da-3e4799e4d8bd" />
+
+# link to short video i recorded as demo -https://youtube.com/shorts/vYy5DXxU0bU
+
+## in General Samsung Should Implement this feature by default for the users who want this feature for security 😊
+
+
 
 ## 🛡️ The Problem This Solves
 
