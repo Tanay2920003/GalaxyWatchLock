@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Watch Lock</string>
+    <string name="lock_tile_label">Lock Now</string>
+    <string name="lock_now">Lock Now</string>
+    <string name="sleep_lock_enabled">Sleep Lock On</string>
+    <string name="sleep_lock_disabled">Sleep Lock Off</string>
+    <string name="enable_admin">Enable Admin Access</string>
+    <string name="admin_description">Required to lock the screen</string>
+    <string name="admin_label">Watch Lock Admin</string>
+    <string name="accessibility_service_description">Allows Watch Lock to lock your screen without Device Admin. Enable this as a fallback if Device Admin is not active.</string>
+</resources>
