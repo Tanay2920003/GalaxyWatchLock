@@ -44,9 +44,31 @@ Samsung Galaxy Watch Ultra has a built-in **Wrist Detection** feature that locks
 
 ### Step 1 — Enable Developer Options on the Watch
 
-1. On your watch: **Settings → About watch → Software → tap Build number 7 times**
-2. Go to **Settings → Developer options → ADB debugging → ON**
-3. Enable **Wireless debugging** and note the IP address and port
+> ℹ️ Developer mode is only needed **once** during setup. You can safely turn it off afterward (see [Step 8](#step-8--disable-developer-mode-after-setup)).
+
+#### 1a — Unlock Developer Options
+
+📺 **Video guide:** [How to enable Developer Mode on Galaxy Watch](https://www.youtube.com/watch?v=Bv_YEZePtgU)
+
+1. On your watch, press the **Home button** (top button) to open the app list
+2. Open **Settings** (gear icon)
+3. Scroll down and tap **About watch**
+4. Tap **Software information**
+5. Find **Software version** and **tap it 7 times rapidly**
+6. You'll see a toast: *"Developer mode is enabled"* ✓
+
+#### 1b — Enable ADB & Wireless Debugging
+
+📺 **Video guide:** [How to enable ADB & Wireless Debugging on Galaxy Watch](https://www.youtube.com/watch?v=XZZpPpqLXBE)
+
+7. Go back to **Settings → Developer options** (now visible at the bottom of Settings)
+8. Tap **ADB debugging** → toggle **ON**
+   - A confirmation prompt may appear — tap **OK**
+9. Tap **Wireless debugging** → toggle **ON**
+10. Tap **Wireless debugging** label (not just the toggle) to open its detail screen
+11. Note the **IP address and port** shown (e.g. `192.168.1.42:41234`) — you'll need this in Step 2
+
+> 💡 Make sure your watch and PC are on the **same Wi-Fi network** before continuing.
 
 ### Step 2 — Connect ADB over Wi-Fi
 
@@ -110,6 +132,17 @@ For quick one-tap locking from anywhere:
 2. Tap **+**
 3. Select **Lock Now**
 
+### Step 8 — Disable Developer Mode After Setup
+
+Now that setup is complete, it's good practice to turn Developer Mode off. It has no effect on the app.
+
+1. On your watch, open **Settings**
+2. Scroll down and tap **Developer options**
+3. Scroll to the bottom and tap **Turn off developer mode** (or toggle it off at the top)
+4. Confirm if prompted
+
+> ✅ The app continues to work fully. Device Admin, Sleep Auto-Lock, Accessibility Service, and the Lock Tile are all unaffected.
+
 ---
 
 ## 🔧 Fallback: Accessibility Service
@@ -162,6 +195,36 @@ UserActivityState == USER_ACTIVITY_ASLEEP
        ▼ (with 5-min cooldown to avoid repeated locks)
 LockHelper.lockNow()
 ```
+
+---
+
+## 💬 Common Questions
+
+### Can I turn off Developer Mode after setup?
+
+**Yes.** Developer mode and ADB are only needed for the one-time Device Admin grant. Once that's done, you can disable Developer options and everything keeps working:
+
+| Feature | Works after disabling Dev Mode? |
+|---|---|
+| Lock Now (Device Admin) | ✅ Yes — grant is stored in the OS |
+| Sleep Auto-Lock | ✅ Yes — uses standard Health Services APIs |
+| Accessibility Service fallback | ✅ Yes — enabled via normal Settings |
+| Lock Tile | ✅ Yes |
+
+> ⚠️ **Exception:** If you ever uninstall and reinstall the app, the Device Admin grant is wiped. You'll need to temporarily re-enable Developer Mode + ADB to re-run the `dpm set-active-admin` command. Alternatively, use the **Accessibility Service** method (Settings → Accessibility) which survives reinstalls without ADB.
+
+---
+
+### Does it work after restarting the watch?
+
+**Yes, fully.** The app is built to survive reboots automatically:
+
+- **`BootReceiver`** listens for `ACTION_BOOT_COMPLETED` and restarts `SleepLockService` if Sleep Auto-Lock was enabled
+- **Device Admin grant** persists across reboots (only cleared on uninstall)
+- **Accessibility Service** is remembered by the system across reboots
+- **`SleepLockService`** uses `START_STICKY` — if the OS kills it to save memory, Android restarts it automatically
+
+After a reboot, everything resumes on its own. No action needed.
 
 ---
 
